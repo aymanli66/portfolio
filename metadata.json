@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Ayman Portfolio - High End Photography",
+  "description": "A minimalist, premium photography portfolio featuring high-end visuals and an AI-powered inquiry assistant.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
