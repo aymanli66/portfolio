@@ -23,19 +23,21 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
   return (
     <div className="fixed inset-0 z-[200] bg-black flex flex-col items-center justify-center transition-opacity duration-1000 ease-in-out" style={{ opacity: progress === 100 ? 0 : 1 }}>
-      <div className="relative mb-8 text-center">
-        <div className="overflow-hidden">
-          <h1 className="text-5xl md:text-8xl font-serif tracking-[0.3em] uppercase opacity-5 transition-transform duration-[2s]" style={{ transform: `scale(${1 + progress * 0.005})` }}>
-            AYMAN
-          </h1>
-        </div>
-        <div 
-          className="absolute top-0 left-0 h-full overflow-hidden transition-all duration-500 ease-out"
-          style={{ width: `${progress}%` }}
-        >
-          <h1 className="text-5xl md:text-8xl font-serif tracking-[0.3em] uppercase text-white whitespace-nowrap">
-            AYMAN
-          </h1>
+      <div className="relative mb-8 text-center w-full flex justify-center">
+        <div className="relative inline-block">
+          <div className="overflow-hidden">
+            <h1 className="text-5xl md:text-8xl font-serif tracking-[0.3em] uppercase opacity-5 transition-transform duration-[2s]" style={{ transform: `scale(${1 + progress * 0.005})` }}>
+              AYMAN
+            </h1>
+          </div>
+          <div 
+            className="absolute top-0 left-0 h-full overflow-hidden transition-all duration-500 ease-out"
+            style={{ width: `${progress}%` }}
+          >
+            <h1 className="text-5xl md:text-8xl font-serif tracking-[0.3em] uppercase text-white whitespace-nowrap">
+              AYMAN
+            </h1>
+          </div>
         </div>
       </div>
 
