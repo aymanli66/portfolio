@@ -9,16 +9,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
   <style>
     :root {
       --bg-color: #000000;
       --text-color: #ffffff;
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
     }
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       margin: 0;
+      padding: 0;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       perspective: 1000px; /* Enable 3D context */
@@ -65,5 +71,6 @@
 </head>
 <body>
   <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
