@@ -48,6 +48,7 @@ export const PHOTOS: Photo[] = [
 
 export const NAV_LINKS = [
   { name: 'Work', href: '#work' },
+  { name: 'About', href: '/about' },
   { name: 'Process', href: '#process' },
   { name: 'Contact', href: '#contact' }
 ];

@@ -1,73 +1,38 @@
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import { Collaborations } from './components/Collaborations';
-import { Work } from './components/Work';
-import { Value } from './components/Value';
-import { Testimonials } from './components/Testimonials';
-import { Process } from './components/Process';
-import { FinalCTA } from './components/FinalCTA';
-import { Footer } from './components/Footer';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Home from './src/pages/Home';
+import About from './src/pages/About';
 import Preloader from './components/Preloader';
+
+// ScrollToTop component to reset scroll on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      reveals.forEach((reveal) => observer.observe(reveal));
-      return () => observer.disconnect();
-    }
-  }, [isLoading]);
 
   if (isLoading) {
     return <Preloader onComplete={() => setIsLoading(false)} />;
   }
 
   return (
-    <main className="bg-black min-h-screen text-white overflow-x-hidden selection:bg-white selection:text-black">
-      <Navbar />
-
-      <Hero />
-
-      <div className="reveal">
-        <Collaborations />
-      </div>
-
-      <div className="reveal">
-        <Work />
-      </div>
-
-      <div className="reveal">
-        <Value />
-      </div>
-
-      <div className="reveal">
-        <Testimonials />
-      </div>
-
-      <div className="reveal">
-        <Process />
-      </div>
-
-      <div className="reveal">
-        <FinalCTA />
-      </div>
-
-      <Footer />
-    </main>
+    <Router>
+      <ScrollToTop />
+      <main className="bg-black min-h-screen text-white overflow-x-hidden selection:bg-white selection:text-black">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </main>
+    </Router>
   );
 };
 
