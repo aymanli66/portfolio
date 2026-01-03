@@ -1,122 +1,31 @@
-import { useState } from 'react';
+import React from 'react';
 
-export function Footer() {
-  const [language, setLanguage] = useState<'EN' | 'AR'>('EN');
-
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-          {/* Brand */}
-          <div>
-            <h3 
-              className="mb-6"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 400 }}
-            >
-              AYMAN Limouri
-            </h3>
-            <p 
-              className="text-white/60"
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', lineHeight: '1.6' }}
-            >
-              Editorial Photography
-              <br />
-              Based in Dubai, UAE
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 
-              className="mb-6 text-white/60"
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}
-            >
-              Contact
-            </h4>
-            <div 
-              className="space-y-2"
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', lineHeight: '1.6' }}
-            >
-              <p>
-                <a href="mailto:hello@aymanlimouri.com" className="hover:text-white/80 transition-colors">
-                  hello@aymanlimouri.com
-                </a>
-              </p>
-              <p>
-                <a href="tel:+971501234567" className="hover:text-white/80 transition-colors">
-                  +971 50 123 4567
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 
-              className="mb-6 text-white/60"
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}
-            >
-              Follow
-            </h4>
-            <div 
-              className="space-y-2"
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', lineHeight: '1.6' }}
-            >
-              <p>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-                  Instagram
-                </a>
-              </p>
-              <p>
-                <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-                  Behance
-                </a>
-              </p>
-              <p>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-                  LinkedIn
-                </a>
-              </p>
-            </div>
-          </div>
+    <footer className="py-12 bg-black text-white border-t border-white/10 text-xs uppercase tracking-widest">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="font-serif text-xl normal-case tracking-normal">
+          AYMAN Limouri
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p 
-            className="text-white/40"
-            style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem' }}
-          >
-            © 2026 AYMAN Limouri. All rights reserved.
-          </p>
+        <nav className="flex gap-8">
+          <a href="#" className="hover:text-neutral-400 transition-colors">Instagram</a>
+          <a href="#" className="hover:text-neutral-400 transition-colors">LinkedIn</a>
+          <a href="#" className="hover:text-neutral-400 transition-colors">Email</a>
+        </nav>
 
-          {/* Language Toggle */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setLanguage('EN')}
-              className={`px-4 py-2 transition-all ${
-                language === 'EN' 
-                  ? 'bg-white text-black' 
-                  : 'bg-transparent text-white/60 hover:text-white border border-white/20'
-              }`}
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.1em' }}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('AR')}
-              className={`px-4 py-2 transition-all ${
-                language === 'AR' 
-                  ? 'bg-white text-black' 
-                  : 'bg-transparent text-white/60 hover:text-white border border-white/20'
-              }`}
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.1em' }}
-            >
-              AR
-            </button>
-          </div>
+        <div className="flex gap-4 items-center">
+          <span className="hover:text-white cursor-pointer transition-colors">EN</span>
+          <span className="text-neutral-600">/</span>
+          <span className="text-neutral-600 hover:text-white cursor-pointer transition-colors">AR</span>
         </div>
+      </div>
+
+      <div className="container mx-auto px-6 mt-8 text-center md:text-left text-neutral-600 text-[10px]">
+        &copy; {new Date().getFullYear()} Ayman Limouri. All rights reserved.
       </div>
     </footer>
   );
-}
+};
+
+export { Footer };

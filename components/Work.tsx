@@ -1,292 +1,91 @@
-import { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import Slider from 'react-slick';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 type Category = 'All' | 'Fashion' | 'Taste' | 'Fragrances' | 'Corporate' | 'Events';
 
-interface WorkItem {
+interface Project {
   id: number;
   category: Category;
-  type: 'image' | 'video';
-  src: string;
+  image: string;
   title: string;
 }
 
-const workItems: WorkItem[] = [
-  {
-    id: 1,
-    category: 'Fashion',
-    type: 'video',
-    src: 'https://cdn.coverr.co/videos/coverr-fashion-model-posing-in-neon-lights-5674/1080p.mp4',
-    title: 'Editorial Fashion Campaign'
-  },
-  {
-    id: 2,
-    category: 'Fashion',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1562765480-ddb93a1069c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwZW5kJTIwZmFzaGlvbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NzQ1NTEyNnww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Luxury Portrait Series'
-  },
-  {
-    id: 3,
-    category: 'Taste',
-    type: 'video',
-    src: 'https://cdn.coverr.co/videos/coverr-chef-preparing-gourmet-dish-3456/1080p.mp4',
-    title: 'Fine Dining Experience'
-  },
-  {
-    id: 4,
-    category: 'Taste',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1695606452735-a161ad7217d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwZGluaW5nJTIwZXhwZXJpZW5jZXxlbnwxfHx8fDE3Njc0NTUxMjd8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Restaurant Editorial'
-  },
-  {
-    id: 5,
-    category: 'Fragrances',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1739190940453-20900e9d18fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJmdW1lJTIwZnJhZ3JhbmNlJTIwbHV4dXJ5fGVufDF8fHx8MTc2NzQ1NTEyNXww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Luxury Fragrance Collection'
-  },
-  {
-    id: 6,
-    category: 'Fragrances',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1633419946251-6d8b5dd33170?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpc2FuJTIwY3JhZnRzbWFuc2hpcHxlbnwxfHx8fDE3Njc0NTUxMjd8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Artisan Perfumery'
-  },
-  {
-    id: 7,
-    category: 'Corporate',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1613473350016-1fe047d6d360?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBidXNpbmVzcyUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NzQ1MzkyOHww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Corporate Portraits'
-  },
-  {
-    id: 8,
-    category: 'Corporate',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1703355685639-d558d1b0f63e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3b3Jrc3BhY2UlMjBvZmZpY2V8ZW58MXx8fHwxNzY3NDM5NjE2fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Modern Workspace'
-  },
-  {
-    id: 9,
-    category: 'Events',
-    type: 'video',
-    src: 'https://cdn.coverr.co/videos/coverr-champagne-glass-at-party-4567/1080p.mp4',
-    title: 'Luxury Event Coverage'
-  },
-  {
-    id: 10,
-    category: 'Events',
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1647956450271-2ff54205bebf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYXJjaGl0ZWN0dXJlJTIwcGhvdG9ncmFwaHl8ZW58MXx8fHwxNzY3NDI2NzA1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Architectural Events'
-  }
+const projects: Project[] = [
+  { id: 1, category: 'Fashion', image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop', title: 'Editorial 01' },
+  { id: 2, category: 'Taste', image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop', title: 'Culinary Art' },
+  { id: 3, category: 'Fragrances', image: 'https://images.unsplash.com/photo-1595425233575-c0816827a51c?q=80&w=1000&auto=format&fit=crop', title: 'Essence' },
+  { id: 4, category: 'Fashion', image: 'https://images.unsplash.com/photo-1627483262268-9c964f720292?q=80&w=1000&auto=format&fit=crop', title: 'Vogue Editorial' },
+  { id: 5, category: 'Corporate', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop', title: 'Architectural' },
+  { id: 6, category: 'Events', image: 'https://images.unsplash.com/photo-1519750157634-b6d493a0ea29?q=80&w=1000&auto=format&fit=crop', title: 'Gala Night' },
 ];
 
-const categories: Category[] = ['All', 'Fashion', 'Taste', 'Fragrances', 'Corporate', 'Events'];
+const Work: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<Category>('Fashion');
 
-export function Work() {
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
-  const sliderRef = useRef<Slider>(null);
+  const filteredProjects = activeCategory === 'All'
+    ? projects
+    : projects.filter(p => p.category === activeCategory);
 
-  const filteredItems = activeCategory === 'All'
-    ? workItems
-    : workItems.filter(item => item.category === activeCategory);
-
-  const NextArrow = ({ onClick }: { onClick?: () => void }) => (
-    <button
-      onClick={onClick}
-      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 text-white/50 hover:text-white transition-colors md:-right-12"
-      aria-label="Next slide"
-    >
-      <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
-    </button>
-  );
-
-  const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
-    <button
-      onClick={onClick}
-      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 text-white/50 hover:text-white transition-colors md:-left-12"
-      aria-label="Previous slide"
-    >
-      <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
-    </button>
-  );
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay: false,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true, // Keep arrows visible on mobile
-        }
-      }
-    ],
-    appendDots: (dots: React.ReactNode) => (
-      <div className="mt-12">
-        <ul className="flex justify-center gap-2"> {dots} </ul>
-      </div>
-    ),
-    customPaging: () => (
-      <div className="w-2 h-2 rounded-full bg-black/20 hover:bg-black/40 transition-colors" />
-    ),
-  };
+  const categories: Category[] = ['Fashion', 'Taste', 'Fragrances', 'Corporate', 'Events'];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-background">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2
-            className="mb-4"
-            style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: '1.2', fontWeight: 400 }}
-          >
-            Selected Work
-          </h2>
-          <p
-            className="text-muted-foreground max-w-2xl mx-auto"
-            style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', lineHeight: '1.7', fontWeight: 300 }}
-          >
-            A curated collection of editorial photography for premium brands and refined experiences.
-          </p>
-        </motion.div>
+    <section className="py-24 bg-black text-white" id="work">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col items-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl mb-12 text-center font-light">Selected Work</h2>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setActiveCategory(category);
-                sliderRef.current?.slickGoTo(0);
-              }}
-              className={`px-6 py-2 transition-all duration-300 border ${activeCategory === category
-                ? 'bg-black text-white border-black'
-                : 'bg-white text-black border-black/20 hover:border-black/40'
-                }`}
-              style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', letterSpacing: '0.05em' }}
-            >
-              {category}
-            </button>
-          ))}
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-sm uppercase tracking-widest">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`pb-2 transition-colors duration-300 ${activeCategory === cat
+                    ? 'border-b border-white text-white'
+                    : 'text-neutral-500 hover:text-neutral-300'
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Carousel */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="work-carousel"
-          >
-            <Slider ref={sliderRef} {...settings}>
-              {filteredItems.map((item) => (
-                <div key={item.id} className="px-4">
-                  <div className="group cursor-pointer">
-                    <div className="aspect-[3/4] overflow-hidden bg-white mb-6 relative">
-                      {item.type === 'video' ? (
-                        <video
-                          src={item.src}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                      ) : (
-                        <img
-                          src={item.src}
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                      )}
-                    </div>
-                    <div className="px-2">
-                      <p
-                        className="text-muted-foreground mb-2"
-                        style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}
-                      >
-                        {item.category}
-                      </p>
-                      <h3
-                        style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', lineHeight: '1.3', fontWeight: 400 }}
-                      >
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1"
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                layout
+                key={project.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="group relative aspect-[3/4] overflow-hidden bg-neutral-900 cursor-pointer"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <p className="font-serif text-2xl tracking-wide">{project.title}</p>
                 </div>
-              ))}
-            </Slider>
-          </motion.div>
-        </AnimatePresence>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        <div className="mt-16 text-center">
+          <a href="#work" className="inline-block border border-white/20 px-8 py-3 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300">
+            View All Projects
+          </a>
+        </div>
       </div>
-
-      <style>{`
-        .work-carousel .slick-slide {
-          opacity: 0.5;
-          transition: opacity 0.5s ease;
-        }
-        
-        .work-carousel .slick-active {
-          opacity: 1;
-        }
-        
-        .work-carousel .slick-prev,
-        .work-carousel .slick-next {
-          width: auto;
-          height: auto;
-        }
-
-        .work-carousel .slick-prev:before,
-        .work-carousel .slick-next:before {
-          display: none;
-        }
-        
-        .work-carousel .slick-dots li button:before {
-          display: none;
-        }
-        
-        .work-carousel .slick-dots li.slick-active div {
-          background-color: #0a0a0a;
-          width: 24px;
-          border-radius: 4px;
-        }
-        
-        @media (max-width: 768px) {
-          .work-carousel .slick-prev {
-            left: 10px;
-          }
-          
-          .work-carousel .slick-next {
-            right: 10px;
-          }
-        }
-      `}</style>
     </section>
   );
-}
+};
+
+export { Work };

@@ -1,75 +1,60 @@
-import { motion } from 'motion/react';
+import React from 'react';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const testimonials = [
-  {
-    id: 1,
-    quote: "Ayman's ability to capture the essence of our brand through his lens is truly remarkable. Every shot feels intentional and elevated.",
-    author: "Sarah Al-Mansouri",
-    position: "Creative Director, Luxury Hospitality Group"
-  },
-  {
-    id: 2,
-    quote: "Working with Ayman transformed how we present our culinary creations. His editorial eye brought a new dimension to our visual identity.",
-    author: "Chef Marcus Laurent",
-    position: "Executive Chef, Michelin-starred Restaurant"
-  },
-  {
-    id: 3,
-    quote: "The level of professionalism and artistic vision Ayman brings is unparalleled. Our fragrance campaign exceeded all expectations.",
-    author: "Layla Hassan",
-    position: "Brand Manager, Premium Fragrances"
-  }
-];
+const Testimonials: React.FC = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    customPaging: () => (
+      <div className="w-2 h-2 mx-1 rounded-full bg-white/20 hover:bg-white transition-colors duration-300" />
+    )
+  };
 
-export function Testimonials() {
+  const testimonials = [
+    {
+      quote: "A rare ability to capture not just the product, but the soul of the brand. Absolutely distinct.",
+      author: "Sarah J.",
+      role: "Creative Director, L'Artisan Parfumeur"
+    },
+    {
+      quote: "Ayman's eye for detail turned our campaign into a visual masterpiece. Calm, confident, premium.",
+      author: "Marc D.",
+      role: "CMO, The Ritz-Carlton"
+    },
+    {
+      quote: "Minimalism that speaks volumes. The imagery elevated our entire digital presence.",
+      author: "Elena R.",
+      role: "Founder, Velvet & Stone"
+    }
+  ];
+
   return (
-    <section className="py-32 px-6 md:px-12 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20 text-gray-500"
-          style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}
-        >
-          Client Testimonials
-        </motion.p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-white p-10 border border-black/5"
-            >
-              <p
-                className="mb-8 text-black/90"
-                style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', lineHeight: '1.7', fontWeight: 300 }}
-              >
-                "{testimonial.quote}"
-              </p>
-              <div className="border-t border-black/10 pt-6">
-                <p
-                  className="mb-1 text-black"
-                  style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', fontWeight: 500 }}
-                >
-                  {testimonial.author}
-                </p>
-                <p
-                  className="text-gray-500"
-                  style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', lineHeight: '1.5' }}
-                >
-                  {testimonial.position}
-                </p>
+    <section className="py-24 bg-neutral-900/30 text-white">
+      <div className="container mx-auto px-6 max-w-3xl text-center">
+        <Slider {...settings} className="pb-12">
+          {testimonials.map((t, i) => (
+            <div key={i} className="focus:outline-none">
+              <blockquote className="font-serif text-2xl md:text-4xl leading-relaxed mb-8 font-light italic opacity-90">
+                "{t.quote}"
+              </blockquote>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xs uppercase tracking-widest font-bold">{t.author}</span>
+                <span className="text-xs uppercase tracking-wide text-white/60">{t.role}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );
-}
+};
+
+export { Testimonials };
