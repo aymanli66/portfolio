@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Slider from 'react-slick';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -97,6 +98,26 @@ export function Work() {
     ? workItems
     : workItems.filter(item => item.category === activeCategory);
 
+  const NextArrow = ({ onClick }: { onClick?: () => void }) => (
+    <button
+      onClick={onClick}
+      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 text-white/50 hover:text-white transition-colors md:-right-12"
+      aria-label="Next slide"
+    >
+      <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
+    </button>
+  );
+
+  const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
+    <button
+      onClick={onClick}
+      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 text-white/50 hover:text-white transition-colors md:-left-12"
+      aria-label="Previous slide"
+    >
+      <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
+    </button>
+  );
+
   const settings = {
     dots: true,
     infinite: true,
@@ -105,13 +126,15 @@ export function Work() {
     slidesToScroll: 1,
     autoplay: false,
     arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
+          arrows: true, // Keep arrows visible on mobile
         }
       }
     ],
@@ -160,8 +183,8 @@ export function Work() {
                 sliderRef.current?.slickGoTo(0);
               }}
               className={`px-6 py-2 transition-all duration-300 border ${activeCategory === category
-                  ? 'bg-black text-white border-black'
-                  : 'bg-white text-black border-black/20 hover:border-black/40'
+                ? 'bg-black text-white border-black'
+                : 'bg-white text-black border-black/20 hover:border-black/40'
                 }`}
               style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', letterSpacing: '0.05em' }}
             >
@@ -233,29 +256,15 @@ export function Work() {
           opacity: 1;
         }
         
-        .work-carousel .slick-arrow {
-          width: 48px;
-          height: 48px;
-          z-index: 10;
-        }
-        
-        .work-carousel .slick-arrow:before {
-          font-size: 48px;
-          color: #0a0a0a;
-          opacity: 0.3;
-          transition: opacity 0.3s;
-        }
-        
-        .work-carousel .slick-arrow:hover:before {
-          opacity: 0.7;
-        }
-        
-        .work-carousel .slick-prev {
-          left: -60px;
-        }
-        
+        .work-carousel .slick-prev,
         .work-carousel .slick-next {
-          right: -60px;
+          width: auto;
+          height: auto;
+        }
+
+        .work-carousel .slick-prev:before,
+        .work-carousel .slick-next:before {
+          display: none;
         }
         
         .work-carousel .slick-dots li button:before {
