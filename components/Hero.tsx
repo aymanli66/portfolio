@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
@@ -26,7 +27,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
         >
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 tracking-tight font-light">
-            Visual storytelling for <br className="hidden md:block" />
+            Photo services for <br className="hidden md:block" />
             <span className="italic">premium brands</span> & refined experiences.
           </h1>
         </motion.div>
@@ -37,13 +38,13 @@ const Hero: React.FC = () => {
           transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
           className="flex justify-center"
         >
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors duration-300"
           >
             Book a project
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

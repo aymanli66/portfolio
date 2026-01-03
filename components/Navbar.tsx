@@ -9,16 +9,20 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
   const isHome = location.pathname === '/';
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-1000 px-8 md:px-16 ${isScrolled ? 'bg-black/90 py-4 backdrop-blur-lg border-b border-white/5' : 'bg-transparent py-10'
+    <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 px-8 md:px-16 ${isScrolled
+        ? 'bg-black/40 backdrop-blur-xl py-5 border-b border-white/5'
+        : 'bg-transparent py-10'
       }`}>
       <div className="max-w-[1800px] mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-serif tracking-[0.5em] uppercase hover:opacity-50 transition-all">
@@ -48,7 +52,7 @@ const Navbar: React.FC = () => {
             return (
               <a
                 key={link.name}
-                href={link.href}
+                href={href}
                 className="text-[9px] uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
               >
                 {link.name}

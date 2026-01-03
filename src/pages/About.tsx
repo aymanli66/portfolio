@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import Navbar from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
 import ParallaxImage from '../../components/ParallaxImage';
 import { ArrowRight } from 'lucide-react';
@@ -24,8 +23,7 @@ const About: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-black min-h-screen text-white overflow-x-hidden selection:bg-white selection:text-black">
-            <Navbar />
+        <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
 
             {/* 1. INTRO SECTION */}
             <section className="pt-48 pb-24 px-8 md:px-16 max-w-[1800px] mx-auto min-h-screen flex flex-col justify-center">
@@ -143,7 +141,7 @@ const About: React.FC = () => {
 
             {/* 5. CTA */}
             <div className="py-32 flex justify-center border-t border-white/5 reveal">
-                <Link to="/#contact" className="group flex flex-col items-center space-y-6">
+                <Link to="/contact" className="group flex flex-col items-center space-y-6">
                     <div className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-500">
                         <ArrowRight className="w-8 h-8 text-white group-hover:text-black transition-colors" />
                     </div>

@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import Navbar from '../../components/Navbar';
 import Hero from '../../components/Hero';
 import { Collaborations } from '../../components/Collaborations';
 import { Work } from '../../components/Work';
@@ -30,7 +29,6 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Navbar />
             <Hero />
 
             <div className="reveal">
