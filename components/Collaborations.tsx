@@ -35,7 +35,7 @@ const Collaborations: React.FC = () => {
               key={`${brand.name}-${index}`}
               className="flex-none px-10"
             >
-              <span className="text-2xl md:text-3xl font-serif tracking-widest uppercase cursor-default">
+              <span className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-serif tracking-widest uppercase cursor-default">
                 {brand.logo}
               </span>
             </div>

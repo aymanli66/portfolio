@@ -40,7 +40,7 @@ const Process: React.FC = () => {
             exit={{ opacity: 0, filter: "blur(10px)" }}
             transition={{ duration: 1 }}
             viewport={{ once: false, amount: 0.5 }}
-            className="text-[10px] uppercase tracking-[0.8em] mb-6"
+            className="text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.8em] mb-6"
           >
             The Workflow
           </motion.span>
@@ -50,9 +50,9 @@ const Process: React.FC = () => {
             exit={{ opacity: 0, filter: "blur(15px)" }}
             transition={{ duration: 1.2, delay: 0.1 }}
             viewport={{ once: false, amount: 0.5 }}
-            className="font-serif text-5xl md:text-7xl font-light text-center"
+            className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-center uppercase tracking-tight"
           >
-            Sculpting <span className="italic">Excellence</span>
+            Sculpting <span className="italic uppercase-none">Excellence</span>
           </motion.h2>
         </div>
 
@@ -81,13 +81,13 @@ const Process: React.FC = () => {
                 className={`w-full md:w-[40%] ${index % 2 === 0 ? 'text-left md:text-right' : 'text-left'}`}
               >
                 <div className={`mb-8 inline-flex items-center gap-6 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <span className="font-serif text-6xl md:text-8xl text-white/5 tracking-tighter italic">
+                  <span className="font-serif text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] text-white/5 tracking-tighter italic">
                     {step.number}
                   </span>
-                  <div className="h-[1px] w-16 bg-white/10" />
+                  <div className="h-[1px] w-16 md:w-24 bg-white/10" />
                 </div>
-                <h3 className="font-serif text-4xl md:text-6xl mb-8 tracking-tight font-light whitespace-nowrap">{step.title}</h3>
-                <p className="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-md md:ml-auto md:mr-0 inline-block">
+                <h3 className="font-serif text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl mb-8 tracking-tight font-light whitespace-nowrap">{step.title}</h3>
+                <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-light leading-relaxed max-w-md md:max-w-xl md:ml-auto md:mr-0 inline-block">
                   {step.description}
                 </p>
               </motion.div>

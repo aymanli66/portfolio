@@ -28,8 +28,10 @@ const Testimonials: React.FC = () => {
   return (
     <section className="py-24 bg-black text-white relative overflow-hidden">
       {/* Title */}
-      <div className="container mx-auto px-6 mb-16 text-center">
-        <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/40 mb-4 font-light">Client Testimonials</h2>
+      <div className="container mx-auto px-6 mb-24 text-center">
+        <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight text-white/90">
+          Client Testimonials
+        </h2>
       </div>
 
       {/* Gradient Overlays for Blur Effect */}
@@ -52,17 +54,17 @@ const Testimonials: React.FC = () => {
           {[...testimonials, ...testimonials].map((t, i) => (
             <div
               key={i}
-              className="flex-none w-[85vw] sm:w-[500px] md:w-[600px] bg-black/60 backdrop-blur-xl p-8 md:p-16 border border-white/10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative"
+              className="flex-none w-[85vw] sm:w-[500px] md:w-[600px] lg:w-[800px] bg-black/60 backdrop-blur-xl p-8 md:p-16 border border-white/10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative"
               style={{
                 boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.05)'
               }}
             >
-              <blockquote className="font-serif text-xl md:text-2xl leading-relaxed mb-12 font-light italic opacity-90 whitespace-normal">
+              <blockquote className="font-serif text-xl md:text-3xl lg:text-4xl leading-relaxed mb-12 font-light italic opacity-90 whitespace-normal">
                 "{t.quote}"
               </blockquote>
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-white">{t.author}</span>
-                <span className="text-[10px] uppercase tracking-wide text-white/40">{t.role}</span>
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-widest font-bold text-white">{t.author}</span>
+                <span className="text-[10px] md:text-xs lg:text-sm uppercase tracking-wide text-white/40">{t.role}</span>
               </div>
             </div>
           ))}

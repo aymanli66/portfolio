@@ -25,9 +25,11 @@ const Hero: React.FC = () => {
 
       <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -20, filter: "blur(20px)" }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          viewport={{ once: false }}
         >
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight mb-6 tracking-tight font-light">
             SHOWCASING CRAFTSMANSHIP <br className="hidden md:block" />
@@ -36,9 +38,11 @@ const Hero: React.FC = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
+          initial={{ opacity: 0, y: 20, filter: "blur(15px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -10, filter: "blur(15px)" }}
+          transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
+          viewport={{ once: false }}
         >
           <p className="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-neutral-300 mb-10 font-light tracking-wide max-w-2xl mx-auto">
             I create premium photography for brands and businesses.

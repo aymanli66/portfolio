@@ -68,35 +68,50 @@ const Work: React.FC = () => {
   return (
     <section className="py-24 bg-black text-white" id="work">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-serif text-4xl md:text-5xl mb-12 text-center font-light uppercase tracking-tight"
-          >
+        <div className="flex flex-col items-center mb-24 md:mb-32">
+          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight text-center mb-16 md:mb-24">
             Selected Work
-          </motion.h2>
+          </h2>
 
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[10px] uppercase tracking-[0.4em]">
+          <div className="relative w-full max-w-7xl py-10 md:py-16 flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center px-4 md:px-12 text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.4em] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            {/* Top Border with Fade Out at edges */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`pb-2 transition-all duration-500 relative group ${activeCategory === cat
+                className={`relative flex-1 py-6 transition-all duration-700 text-center whitespace-nowrap group ${activeCategory === cat
                   ? 'text-white'
                   : 'text-neutral-500 hover:text-neutral-300'
                   }`}
               >
-                {cat}
+                <span className="relative z-10 px-4 transition-colors duration-500">{cat}</span>
+
+                {/* Active Tab Background (High-Performance Smooth Follow) */}
                 {activeCategory === cat && (
                   <motion.div
-                    layoutId="activeTab"
-                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-white"
+                    layoutId="activeCategoryCase"
+                    className="absolute inset-y-4 inset-x-2 md:inset-x-4 bg-white/10 backdrop-blur-3xl border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 35,
+                      mass: 1,
+                      restDelta: 0.001
+                    }}
                   />
                 )}
+
+                {/* Subtle Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-y-4 inset-x-8 bg-white/[0.02] blur-md rounded-full" />
+                </div>
               </button>
             ))}
+
+            {/* Bottom Border with Fade Out at edges */}
+            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
         </div>
 
