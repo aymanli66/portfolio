@@ -2,26 +2,56 @@ import React from 'react';
 import { motion } from 'motion/react';
 
 const Value: React.FC = () => {
-  const values = [
-    {
-      text: "Distilling essence into visual identity.",
-      gradient: "from-white via-neutral-200 to-neutral-500",
-      delay: 0
-    },
-    {
-      text: "Artistic direction with premium execution.",
-      gradient: "from-[#F7E7CE] via-[#FFF5E6] to-[#D4AF37]", // Champagne/Gold
-      delay: 0.2
-    },
-    {
-      text: "Elevating brands through silence and space.",
-      gradient: "from-[#E0E0E0] via-white to-neutral-400",
-      delay: 0.4
-    }
+  const sentences = [
+    "Distilling essence into visual identity.",
+    "Artistic direction with premium execution.",
+    "Elevating brands through silence and space."
   ];
+
+  const fullText = sentences.join(" ");
+  const words = fullText.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.2, 0.65, 0.3, 0.9],
+      },
+    },
+    hidden: {
+      opacity: 0,
+      filter: "blur(20px)",
+      y: 10,
+      scale: 1.1,
+    },
+  };
 
   return (
     <section className="py-48 bg-black text-white relative flex items-center justify-center overflow-hidden">
+      {/* Creative Flash Effect */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: [0, 0.5, 0] }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="absolute inset-0 bg-white z-20 pointer-events-none"
+      />
+
       {/* Subtle organic light in background */}
       <motion.div
         animate={{
@@ -32,45 +62,30 @@ const Value: React.FC = () => {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] pointer-events-none"
       />
 
-      <div className="container mx-auto px-6 max-w-5xl z-10 text-center">
-        <div className="flex flex-col gap-12 md:gap-20">
-          {values.map((v, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1.5, delay: v.delay, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <h2
-                className={`font-serif text-4xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight bg-gradient-to-r ${v.gradient} bg-clip-text text-transparent`}
-                style={{
-                  backgroundSize: '200% auto',
-                }}
+      <div className="container mx-auto px-6 max-w-6xl z-10 text-center">
+        <motion.h2
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.3] tracking-tight text-neutral-200"
+        >
+          {words.map((word, index) => {
+            const cleanWord = word.replace(/[.,]/g, '').toLowerCase();
+            const isItalic = cleanWord === 'identity' ||
+              cleanWord === 'execution' ||
+              cleanWord === 'space';
+            return (
+              <motion.span
+                variants={child}
+                key={index}
+                className={`inline-block mr-[0.3em] ${isItalic ? 'italic text-white' : ''}`}
               >
-                <motion.span
-                  animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  className="inline-block"
-                >
-                  {v.text.split(' ').map((word, idx) => (
-                    <span key={idx} className={word.toLowerCase().includes('identity') || word.toLowerCase().includes('execution') || word.toLowerCase().includes('space') ? 'italic' : ''}>
-                      {word}{' '}
-                    </span>
-                  ))}
-                </motion.span>
-              </h2>
-              {/* Premium Glass Bottom Line */}
-              <motion.div
-                initial={{ width: 0, opacity: 0 }}
-                whileInView={{ width: "30%", opacity: 0.2 }}
-                transition={{ duration: 2, delay: v.delay + 0.5 }}
-                className="h-[1px] bg-white mx-auto mt-8 hidden md:block"
-              />
-            </motion.div>
-          ))}
-        </div>
+                {word}
+              </motion.span>
+            );
+          })}
+        </motion.h2>
       </div>
     </section>
   );

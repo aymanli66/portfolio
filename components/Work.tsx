@@ -12,7 +12,7 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 // Categories for the portfolio
-type Category = 'Fashion' | 'Taste' | 'Fragrances' | 'Corporate' | 'Events';
+type Category = 'All' | 'Fashion' | 'Taste' | 'Fragrances' | 'Corporate' | 'Events';
 
 interface Photo {
   src: string;
@@ -62,8 +62,8 @@ const Work: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('Fashion');
   const [index, setIndex] = useState(-1);
 
-  const filteredPhotos = photos.filter(p => p.category === activeCategory);
-  const categories: Category[] = ['Fashion', 'Taste', 'Fragrances', 'Corporate', 'Events'];
+  const filteredPhotos = activeCategory === 'All' ? photos : photos.filter(p => p.category === activeCategory);
+  const categories: Category[] = ['Fashion', 'Taste', 'Fragrances', 'Corporate', 'Events', 'All'];
 
   return (
     <section className="py-24 bg-black text-white" id="work">
@@ -117,9 +117,10 @@ const Work: React.FC = () => {
 
         <motion.div
           key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -20, filter: "blur(20px)" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="gallery-container max-w-6xl mx-auto"
         >
           <MasonryPhotoAlbum
@@ -170,15 +171,7 @@ const Work: React.FC = () => {
           plugins={[Captions, Fullscreen, Thumbnails, Zoom]}
         />
 
-        <div className="mt-20 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block border border-white/10 px-12 py-4 text-[9px] uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all duration-500 rounded-full"
-          >
-            Explore Portfolio
-          </motion.button>
-        </div>
+
       </div>
     </section>
   );
