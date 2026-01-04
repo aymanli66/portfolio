@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { NAV_LINKS } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -15,25 +17,38 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-
   const isHome = location.pathname === '/';
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.3 }
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 }
+    }
+  };
 
   return (
     <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 px-8 md:px-16 ${isScrolled
-        ? 'bg-black/40 backdrop-blur-xl py-5 border-b border-white/5'
-        : 'bg-transparent py-10'
+      ? 'bg-black/40 backdrop-blur-xl py-5 border-b border-white/5'
+      : 'bg-transparent py-10'
       }`}>
-      <div className="max-w-[1800px] mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-serif tracking-[0.5em] uppercase hover:opacity-50 transition-all">
-          Ayman
-        </Link>
+      <div className="max-w-[1800px] mx-auto flex items-center">
+        {/* Left Section: Logo */}
+        <div className="flex-1 flex justify-start">
+          <Link to="/" className="text-xl font-serif tracking-[0.5em] uppercase hover:opacity-50 transition-all inline-block">
+            Ayman
+          </Link>
+        </div>
 
-        <div className="hidden lg:flex space-x-16">
+        {/* Center Section: Navigation Links */}
+        <div className="hidden lg:flex space-x-16 flex-initial items-center">
           {NAV_LINKS.map((link) => {
-            // Handle external links or hash links vs internal routes
             const isInternal = link.href.startsWith('/');
-            // For sections on home page, checks if we need to navigate home first
             const href = (!isHome && link.href.startsWith('#')) ? `/${link.href}` : link.href;
 
             if (isInternal && !link.href.startsWith('#')) {
@@ -52,7 +67,7 @@ const Navbar: React.FC = () => {
             return (
               <a
                 key={link.name}
-                href={href}
+                href={link.href}
                 className="text-[9px] uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
               >
                 {link.name}
@@ -62,11 +77,82 @@ const Navbar: React.FC = () => {
           })}
         </div>
 
-        <button className="text-[9px] uppercase tracking-[0.4em] font-light border border-white/10 px-10 py-3 hover:bg-white hover:text-black transition-all duration-500 rounded-full">
-          Journal
-        </button>
+        {/* Right Section: CTA Button & Mobile Toggle */}
+        <div className="flex-1 flex justify-end items-center gap-8">
+          <Link
+            to="/contact"
+            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[9px] uppercase tracking-[0.4em] font-light bg-white/10 text-white border border-white/20 px-10 py-3 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
+          >
+            <span className="relative z-10">Get in Touch</span>
+
+            {/* Shimmer Effect - Visible when scrolled */}
+            {isScrolled && (
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2,
+                  ease: "linear",
+                  repeatDelay: 3
+                }}
+                className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+              />
+            )}
+          </Link>
+
+          {/* Hamburger Menu Icon */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none z-[110]"
+          >
+            <motion.span
+              animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              className="block w-6 h-[1px] bg-white transition-all"
+            />
+            <motion.span
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block w-6 h-[1px] bg-white transition-all"
+            />
+            <motion.span
+              animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              className="block w-6 h-[1px] bg-white transition-all"
+            />
+          </button>
+        </div>
       </div>
-    </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+            className="fixed inset-0 bg-black z-[105] flex flex-col items-center justify-center space-y-12 lg:hidden"
+          >
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-2xl font-serif tracking-[0.3em] uppercase hover:text-gray-400 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+            <Link
+              to="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-[10px] uppercase tracking-[0.4em] font-light bg-white text-black px-12 py-4 rounded-full"
+            >
+              Get in Touch
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav >
   );
 };
 

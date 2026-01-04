@@ -1,23 +1,7 @@
 import React from 'react';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { motion } from 'motion/react';
 
 const Testimonials: React.FC = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: false,
-    customPaging: () => (
-      <div className="w-2 h-2 mx-1 rounded-full bg-white/20 hover:bg-white transition-colors duration-300" />
-    )
-  };
-
   const testimonials = [
     {
       quote: "A rare ability to capture not just the product, but the soul of the brand. Absolutely distinct.",
@@ -33,25 +17,56 @@ const Testimonials: React.FC = () => {
       quote: "Minimalism that speaks volumes. The imagery elevated our entire digital presence.",
       author: "Elena R.",
       role: "Founder, Velvet & Stone"
+    },
+    {
+      quote: "Every frame is a story. His work brings a level of sophistication we hadn't seen before.",
+      author: "Julian M.",
+      role: "Art Director, Vogue"
     }
   ];
 
   return (
-    <section className="py-24 bg-neutral-900/30 text-white">
-      <div className="container mx-auto px-6 max-w-3xl text-center">
-        <Slider {...settings} className="pb-12">
-          {testimonials.map((t, i) => (
-            <div key={i} className="focus:outline-none">
-              <blockquote className="font-serif text-2xl md:text-4xl leading-relaxed mb-8 font-light italic opacity-90">
+    <section className="py-24 bg-black text-white relative overflow-hidden">
+      {/* Title */}
+      <div className="container mx-auto px-6 mb-16 text-center">
+        <h2 className="text-[10px] uppercase tracking-[0.5em] text-white/40 mb-4 font-light">Client Testimonials</h2>
+      </div>
+
+      {/* Gradient Overlays for Blur Effect */}
+      <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+      <div className="flex overflow-hidden">
+        <motion.div
+          animate={{
+            x: ["-50%", "0%"],
+          }}
+          transition={{
+            duration: 40,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+          className="flex whitespace-nowrap gap-12 items-stretch"
+        >
+          {/* Duplicate for infinite loop */}
+          {[...testimonials, ...testimonials].map((t, i) => (
+            <div
+              key={i}
+              className="flex-none w-[85vw] sm:w-[500px] md:w-[600px] bg-black/60 backdrop-blur-xl p-8 md:p-16 border border-white/10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative"
+              style={{
+                boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.05)'
+              }}
+            >
+              <blockquote className="font-serif text-xl md:text-2xl leading-relaxed mb-12 font-light italic opacity-90 whitespace-normal">
                 "{t.quote}"
               </blockquote>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xs uppercase tracking-widest font-bold">{t.author}</span>
-                <span className="text-xs uppercase tracking-wide text-white/60">{t.role}</span>
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] uppercase tracking-widest font-bold text-white">{t.author}</span>
+                <span className="text-[10px] uppercase tracking-wide text-white/40">{t.role}</span>
               </div>
             </div>
           ))}
-        </Slider>
+        </motion.div>
       </div>
     </section>
   );
