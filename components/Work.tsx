@@ -73,26 +73,26 @@ const Work: React.FC = () => {
             Selected Work
           </h2>
 
-          <div className="relative w-full max-w-7xl py-10 md:py-16 flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center px-4 md:px-12 text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.4em] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-            {/* Top Border with Fade Out at edges */}
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="relative w-full max-w-7xl py-6 md:py-10 flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center px-4 md:px-12 text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.4em]">
+            {/* Top Border - Long Overflow with horizontal fade */}
+            <div className="absolute top-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`relative flex-1 py-6 transition-all duration-700 text-center whitespace-nowrap group ${activeCategory === cat
+                className={`relative flex-1 py-4 transition-all duration-700 text-center whitespace-nowrap group ${activeCategory === cat
                   ? 'text-white'
                   : 'text-neutral-500 hover:text-neutral-300'
                   }`}
               >
                 <span className="relative z-10 px-4 transition-colors duration-500">{cat}</span>
 
-                {/* Active Tab Background (High-Performance Smooth Follow) */}
+                {/* Active Tab Contour (Hard Case Empty) */}
                 {activeCategory === cat && (
                   <motion.div
                     layoutId="activeCategoryCase"
-                    className="absolute inset-y-4 inset-x-2 md:inset-x-4 bg-white/10 backdrop-blur-3xl border border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+                    className="absolute inset-y-1 md:inset-y-0 inset-x-0 md:inset-x-2 border border-white/60"
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -110,8 +110,8 @@ const Work: React.FC = () => {
               </button>
             ))}
 
-            {/* Bottom Border with Fade Out at edges */}
-            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            {/* Bottom Border - Long Overflow with horizontal fade */}
+            <div className="absolute bottom-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
           </div>
         </div>
 
