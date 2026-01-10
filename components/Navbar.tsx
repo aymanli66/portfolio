@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-[1800px] mx-auto flex items-center">
         {/* Left Section: Logo */}
         <div className="flex-1 flex justify-start">
-          <Link to="/" className="text-xl md:text-2xl 2xl:text-3xl font-serif tracking-[0.5em] uppercase hover:opacity-50 transition-all inline-block">
+          <Link to="/" className="text-base md:text-lg lg:text-xl 2xl:text-2xl font-serif tracking-[0.5em] uppercase hover:opacity-50 transition-all inline-block">
             Ayman
           </Link>
         </div>
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="text-[9px] md:text-[10px] lg:text-xs 2xl:text-sm uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
+                  className="text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
                 >
                   {link.name}
                   <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full" />
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[9px] uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
+                className="text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
               >
                 {link.name}
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full" />
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
         <div className="flex-1 flex justify-end items-center gap-8">
           <Link
             to="/contact"
-            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[9px] md:text-[10px] lg:text-xs 2xl:text-sm uppercase tracking-[0.4em] font-light bg-white/10 text-white border border-white/20 px-8 py-3 2xl:px-12 2xl:py-4 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
+            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm uppercase tracking-[0.4em] font-light bg-white/10 text-white border border-white/20 px-8 py-3 2xl:px-12 2xl:py-4 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
           >
             <span className="relative z-10">Get in Touch</span>
 
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-2xl font-serif tracking-[0.3em] uppercase hover:text-gray-400 transition-colors"
+                className="text-xl font-serif tracking-[0.3em] uppercase hover:text-gray-400 transition-colors"
               >
                 {link.name}
               </a>
@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
             <Link
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-[10px] uppercase tracking-[0.4em] font-light bg-white text-black px-12 py-4 rounded-full"
+              className="text-[11px] uppercase tracking-[0.4em] font-light bg-white text-black px-12 py-4 rounded-full"
             >
               Get in Touch
             </Link>
