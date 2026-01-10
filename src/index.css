@@ -109,6 +109,19 @@ h6,
   display: none;
 }
 
+/* Hide native scrollbar globally for custom implementation */
+* {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
 /* 3D Image Container Styles */
 .parallax-container {
   overflow: hidden;

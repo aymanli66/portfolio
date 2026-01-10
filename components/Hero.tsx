@@ -5,9 +5,9 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black text-white">
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-white pt-20">
       {/* Background Video */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 text-[11px]">
         <video
           autoPlay
           muted
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
       {/* Overlay gradient for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 z-10" />
 
-      <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl">
+      <div className="relative z-20 container mx-auto px-6 text-center max-w-4xl flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -31,8 +31,8 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: false }}
         >
-          <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 tracking-tight font-light">
-            SHOWCASING CRAFTSMANSHIP <br className="hidden md:block" />
+          <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-6 tracking-tight font-light">
+            <span className="whitespace-nowrap">SHOWCASING CRAFTSMANSHIP</span> <br className="hidden md:block" />
             WITH <span className="italic">INTENTION</span>.
           </h1>
         </motion.div>
@@ -51,16 +51,21 @@ const Hero: React.FC = () => {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: false }}
           className="flex justify-center"
         >
           <Link
             to="/contact"
-            className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-sm uppercase tracking-widest hover:bg-neutral-200 transition-colors duration-300"
+            className="group relative flex items-center pl-8 pr-4 py-1 md:py-2 lg:py-2 xl:py-2 bg-white/10 backdrop-blur-xl text-white border border-white/10 rounded-full hover:bg-white/20 hover:border-white/30 transition-all duration-500 hover:-translate-y-1"
           >
-            Book a project
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <span className="text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] font-bold uppercase tracking-[0.3em]">
+              Book a project
+            </span>
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full text-white flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+            </div>
           </Link>
         </motion.div>
       </div>

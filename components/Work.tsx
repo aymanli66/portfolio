@@ -68,11 +68,7 @@ const Work: React.FC = () => {
   return (
     <section className="py-24 bg-black text-white overflow-hidden" id="work">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col items-center mb-12 md:mb-20">
-          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-tight text-center mb-6 md:mb-8 lg:mb-10 xl:mb-12">
-            Selected Work
-          </h2>
-
+        <div className="flex flex-col items-center mb-6 md:mb-8 lg:mb-10 xl:mb-12">
           <div className="relative w-full max-w-5xl py-8 flex flex-wrap justify-center items-center gap-4 md:gap-8 text-xs md:text-sm lg:text-base uppercase tracking-[0.2em] font-bold">
             {/* Top Border - Long Overflow with horizontal fade */}
             <div className="absolute top-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />

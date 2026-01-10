@@ -37,10 +37,10 @@ const FinalCTA: React.FC = () => {
         >
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-6 border border-black/10 bg-black text-white px-14 py-6 text-xs md:text-sm uppercase tracking-[0.3em] hover:bg-neutral-900 transition-all duration-500 rounded-full shadow-2xl"
+            className="group inline-flex items-center gap-6 border border-black/5 bg-black text-white px-10 py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-neutral-900 transition-all duration-500 rounded-full shadow-xl"
           >
             Start a project
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
+            <ArrowRight className="w-4 h-4 md:w-5 h-5 transition-transform group-hover:translate-x-2" />
           </Link>
         </motion.div>
       </div>

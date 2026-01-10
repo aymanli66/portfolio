@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
         <div className="flex-1 flex justify-end items-center gap-8">
           <Link
             to="/contact"
-            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[11px] md:text-xs lg:text-sm 2xl:text-base uppercase tracking-[0.3em] font-medium bg-white/10 text-white border border-white/20 px-10 py-4 2xl:px-14 2xl:py-5 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
+            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[10px] md:text-[11px] lg:text-xs uppercase tracking-[0.2em] font-bold bg-white/10 text-white border border-white/20 px-8 py-3.5 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
           >
             <span className="relative z-10">Get in Touch</span>
 

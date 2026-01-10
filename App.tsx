@@ -6,6 +6,7 @@ import About from './src/pages/About';
 import Contact from './src/pages/Contact';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
+import CustomScrollbar from './components/CustomScrollbar';
 
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
@@ -35,6 +36,7 @@ const App: React.FC = () => {
     <Router>
       <ScrollToTop />
       <main className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
+        <CustomScrollbar />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
