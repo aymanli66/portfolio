@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Home from './src/pages/Home';
 import About from './src/pages/About';
 import Contact from './src/pages/Contact';
+import LensDemo from './src/pages/LensDemo';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import CustomScrollbar from './components/CustomScrollbar';
@@ -42,6 +43,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/lens-demo" element={<LensDemo />} />
         </Routes>
       </main>
     </Router>
