@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 px-8 md:px-16 ${isScrolled
-      ? 'bg-black/40 backdrop-blur-xl py-5 border-b border-white/5'
+      ? 'bg-black/40 backdrop-blur-xl py-5'
       : 'bg-transparent py-10'
       }`}>
       <div className="max-w-[1800px] mx-auto flex items-center">
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
             return (
               <a
                 key={link.name}
-                href={link.href}
+                href={href}
                 className="text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm uppercase tracking-[0.5em] font-light hover:text-gray-400 transition-colors relative group"
               >
                 {link.name}
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
         <div className="flex-1 flex justify-end items-center gap-8">
           <Link
             to="/contact"
-            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm uppercase tracking-[0.4em] font-light bg-white/10 text-white border border-white/20 px-8 py-3 2xl:px-12 2xl:py-4 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
+            className="hidden sm:relative sm:overflow-hidden sm:inline-block text-[11px] md:text-xs lg:text-sm 2xl:text-base uppercase tracking-[0.3em] font-medium bg-white/10 text-white border border-white/20 px-10 py-4 2xl:px-14 2xl:py-5 hover:bg-white hover:text-black transition-all duration-500 rounded-full whitespace-nowrap backdrop-blur-sm group"
           >
             <span className="relative z-10">Get in Touch</span>
 

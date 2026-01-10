@@ -66,52 +66,45 @@ const Work: React.FC = () => {
   const categories: Category[] = ['Fashion', 'Taste', 'Fragrances', 'Corporate', 'Events', 'All'];
 
   return (
-    <section className="py-24 bg-black text-white" id="work">
+    <section className="py-24 bg-black text-white overflow-hidden" id="work">
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-center mb-24 md:mb-32">
-          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight text-center mb-16 md:mb-24">
+          <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-tight text-center mb-6 md:mb-8 lg:mb-10 xl:mb-12">
             Selected Work
           </h2>
 
-          <div className="relative w-full max-w-7xl py-6 md:py-10 flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center px-4 md:px-12 text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.4em]">
+          <div className="relative w-full max-w-5xl py-12 flex flex-wrap justify-center items-center gap-4 md:gap-8 text-xs md:text-sm lg:text-base uppercase tracking-[0.2em] font-bold">
             {/* Top Border - Long Overflow with horizontal fade */}
-            <div className="absolute top-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+            <div className="absolute top-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
 
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`relative flex-1 py-4 transition-all duration-700 text-center whitespace-nowrap group ${activeCategory === cat
+                className={`relative px-4 py-2 transition-all duration-500 text-center whitespace-nowrap group ${activeCategory === cat
                   ? 'text-white'
-                  : 'text-neutral-500 hover:text-neutral-300'
+                  : 'text-white/80 hover:text-white/80'
                   }`}
               >
-                <span className="relative z-10 px-4 transition-colors duration-500">{cat}</span>
+                <span className="relative z-10 transition-colors duration-500">{cat}</span>
 
-                {/* Active Tab Contour (Hard Case Empty) */}
+                {/* Active Tab Underline Effect */}
                 {activeCategory === cat && (
                   <motion.div
-                    layoutId="activeCategoryCase"
-                    className="absolute inset-y-1 md:inset-y-0 inset-x-0 md:inset-x-2 border border-white/60"
+                    layoutId="activeCategoryUnderline"
+                    className="absolute -bottom-2 left-0 right-0 h-[2px] bg-white"
                     transition={{
                       type: "spring",
                       stiffness: 400,
-                      damping: 35,
-                      mass: 1,
-                      restDelta: 0.001
+                      damping: 30
                     }}
                   />
                 )}
-
-                {/* Subtle Hover Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute inset-y-4 inset-x-8 bg-white/[0.02] blur-md rounded-full" />
-                </div>
               </button>
             ))}
 
             {/* Bottom Border - Long Overflow with horizontal fade */}
-            <div className="absolute bottom-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 -left-[20%] -right-[20%] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
           </div>
         </div>
 
@@ -120,7 +113,7 @@ const Work: React.FC = () => {
           initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -20, filter: "blur(20px)" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="gallery-container max-w-6xl mx-auto"
         >
           <MasonryPhotoAlbum

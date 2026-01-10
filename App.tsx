@@ -34,7 +34,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <main className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
+      <main className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

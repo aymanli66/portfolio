@@ -30,15 +30,15 @@ const Process: React.FC = () => {
   ];
 
   return (
-    <section className="py-32 bg-black text-white overflow-hidden" id="process">
+    <section className="py-24 bg-black text-white overflow-hidden" id="process">
       <div className="container mx-auto px-6 relative">
         {/* Section Header */}
-        <div className="mb-32 flex flex-col items-center">
+        <div className="mb-20 flex flex-col items-center">
           <motion.span
             initial={{ opacity: 0, filter: "blur(10px)" }}
             whileInView={{ opacity: 0.4, filter: "blur(0px)" }}
             exit={{ opacity: 0, filter: "blur(10px)" }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: false, amount: 0.5 }}
             className="text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.8em] mb-6"
           >
@@ -48,16 +48,16 @@ const Process: React.FC = () => {
             initial={{ opacity: 0, filter: "blur(15px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, filter: "blur(15px)" }}
-            transition={{ duration: 1.2, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: false, amount: 0.5 }}
-            className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-center uppercase tracking-tight"
+            className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-center uppercase tracking-tight"
           >
             Sculpting <span className="italic uppercase-none">Excellence</span>
           </motion.h2>
         </div>
 
         {/* Timeline Line */}
-        <div className="absolute left-1/2 top-[450px] bottom-0 w-[1px] bg-white/5 -translate-x-1/2 hidden md:block">
+        <div className="absolute left-1/2 top-[350px] bottom-0 w-[1px] bg-white/5 -translate-x-1/2 hidden md:block">
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
@@ -68,7 +68,7 @@ const Process: React.FC = () => {
           />
         </div>
 
-        <div className="relative space-y-48 md:space-y-80">
+        <div className="relative space-y-16 md:space-y-28">
           {steps.map((step, index) => (
             <div key={index} className={`flex flex-col md:flex-row items-center justify-between relative ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
 
@@ -76,18 +76,18 @@ const Process: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, filter: "blur(20px)" }}
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: false, amount: 0.4, margin: "-50px 0px -50px 0px" }}
                 className={`w-full md:w-[40%] ${index % 2 === 0 ? 'text-left md:text-right' : 'text-left'}`}
               >
                 <div className={`mb-8 inline-flex items-center gap-6 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <span className="font-serif text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] text-white/5 tracking-tighter italic">
+                  <span className="font-serif text-5xl md:text-7xl lg:text-8xl text-white/5 tracking-tighter italic">
                     {step.number}
                   </span>
                   <div className="h-[1px] w-16 md:w-24 bg-white/10" />
                 </div>
-                <h3 className="font-serif text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl mb-8 tracking-tight font-light whitespace-nowrap">{step.title}</h3>
-                <p className="text-neutral-400 text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-light leading-relaxed max-w-md md:max-w-xl md:ml-auto md:mr-0 inline-block">
+                <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl mb-6 tracking-tight font-light whitespace-nowrap">{step.title}</h3>
+                <p className="text-neutral-400 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-md md:max-w-xl md:ml-auto md:mr-0 inline-block">
                   {step.description}
                 </p>
               </motion.div>

@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
             <div className="pt-32 md:pt-48 pb-20 px-6 md:px-12 max-w-[1800px] mx-auto">
                 {/* Intro */}
                 <div className="mb-24 md:mb-32">
-                    <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl mb-8 leading-[1.1]">
+                    <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl mb-8 leading-[1.1]">
                         Let’s create<br />something refined.
                     </h1>
                     <p className="text-neutral-400 text-sm md:text-base tracking-wide max-w-md font-light">
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
                     <div className="lg:w-1/3 space-y-16">
                         <div>
                             <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">Contact</h3>
-                            <a href="mailto:hello@aymanlimouri.com" className="text-2xl md:text-3xl font-serif hover:opacity-50 transition-opacity block mb-2">
+                            <a href="mailto:hello@aymanlimouri.com" className="text-xl md:text-2xl font-serif hover:opacity-50 transition-opacity block mb-2">
                                 hello@aymanlimouri.com
                             </a>
                             <p className="text-neutral-400 font-light">+971 50 123 4567</p>

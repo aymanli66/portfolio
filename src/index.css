@@ -67,6 +67,8 @@
 html,
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -94,7 +96,7 @@ h6,
 .reveal {
   opacity: 0;
   transform: translateY(60px);
-  transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 

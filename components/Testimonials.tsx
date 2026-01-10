@@ -29,7 +29,7 @@ const Testimonials: React.FC = () => {
     <section className="py-24 bg-black text-white relative overflow-hidden">
       {/* Title */}
       <div className="container mx-auto px-6 mb-24 text-center">
-        <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light uppercase tracking-tight text-white/90">
+        <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-tight text-white/90">
           Client Testimonials
         </h2>
       </div>
@@ -59,7 +59,7 @@ const Testimonials: React.FC = () => {
                 boxShadow: 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.05)'
               }}
             >
-              <blockquote className="font-serif text-xl md:text-3xl lg:text-4xl leading-relaxed mb-12 font-light italic opacity-90 whitespace-normal">
+              <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl leading-relaxed mb-12 font-light italic opacity-90 whitespace-normal">
                 "{t.quote}"
               </blockquote>
               <div className="flex flex-col gap-2">

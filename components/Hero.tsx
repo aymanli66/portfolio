@@ -28,10 +28,10 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -20, filter: "blur(20px)" }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: false }}
         >
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight mb-6 tracking-tight font-light">
+          <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 tracking-tight font-light">
             SHOWCASING CRAFTSMANSHIP <br className="hidden md:block" />
             WITH <span className="italic">INTENTION</span>.
           </h1>
@@ -41,10 +41,10 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20, filter: "blur(15px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -10, filter: "blur(15px)" }}
-          transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
+          transition={{ duration: 0.5, delay: 0.05, ease: 'easeOut' }}
           viewport={{ once: false }}
         >
-          <p className="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-neutral-300 mb-10 font-light tracking-wide max-w-2xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-neutral-300 mb-10 font-light tracking-wide max-w-2xl mx-auto">
             I create premium photography for brands and businesses.
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           className="flex justify-center"
         >
           <Link
